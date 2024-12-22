@@ -1,0 +1,70 @@
+﻿@model IndexViewModel
+
+@{
+    Layout = "~/Views/Shared/_HatLayout.cshtml";
+}
+
+@section styles {
+    <link href="@Url.Content("~/css/index.css")" rel="stylesheet">
+}
+<div class="container">
+    <div class="row">
+        <div class="column">
+            <div class="stats-block">
+                <h3>Stats</h3>
+                <p>Hello again, <strong>@Model.User.UserName</strong></p>
+                <p>Tadpoles: <span id="current_score">@Model.User.CurrentScore</span><img class='tadpole_samall_icon' src="~/Illithid_Power_Icon.png" /></p>
+                <p>Total: <span id="record_score">@Model.User.RecordScore</span><img src="~/Illithid_Power_Icon.png" /></p>
+                <p>Tadpoles per click: <span id="profit_per_click">@Model.User.ProfitPerClick</span> <img src="~/Illithid_Power_Icon.png" /></p>
+                <p>Adventures collect: <span id="profit_per_second">@Model.User.ProfitPerSecond</span> <img src="~/Illithid_Power_Icon.png" /></p>
+            </div>
+
+            <div class="alert alert-warning alert-dismissible fade show afk-alert" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="center-column">
+                <button id="clickitem" ondrag="return false" ondragdrop="return false" ondragstart="return false" class="click-button bg-transparent border-0">
+                    <img src="~/Tadpole_Pool.png" />
+                </button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="adventurers-block">
+                <h3>Adventurers</h3>
+                <div class="adventurer-grid">
+                    @foreach (var boost in Model.Boosts)
+                    {
+                        var userBoost = Model.User.UserBoosts.FirstOrDefault(ub => ub.BoostId == boost.Id);
+
+                        var price = userBoost?.CurrentPrice ?? boost.Price;
+                        var quantity = userBoost?.Quantity ?? 0;
+
+                        <button class="boost-button">
+                            <span class="boost-id" hidden>@boost.Id</span>
+                            <h4 class="adventurer-name">@boost.Title.Replace('_', ' ')</h4>
+                            <img src="data:image/png;base64, @Convert.ToBase64String(boost.Image)" height="100" />
+                            <h5 class="boost-price-string adventurer-stats">Price: <span class="boost-price">@price</span></h5>
+                            <h5 class="adventurer-stats">
+                                Income: @boost.Profit
+                                @if (boost.IsAuto)
+                                {
+                                    <span> p/s</span>
+                                }
+                            </h5>
+                            <h5 class="adventurer-level">
+                                Level: <span class="boost-quantity">@quantity</span>
+                            </h5>
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script src="~/js/index.js"></script>
+}

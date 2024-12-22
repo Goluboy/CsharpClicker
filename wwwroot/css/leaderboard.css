@@ -1,0 +1,29 @@
+﻿@font-face {
+    font-family: 'bg3-font';
+    src: url('../Classica-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+    background-image: url('../background.jpg');
+    background-size: cover;
+    background-position: calc(50%) calc(50% + 200px);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #84c6f5;
+    margin: 0;
+    padding: 0;
+    font-family: 'bg3-font', sans-serif;
+}
+
+.selected-page {
+    border-radius: 50%;
+    background-color: rgba(211,211,211)
+}
+
+.table-dark {
+    opacity: 0.8;
+}

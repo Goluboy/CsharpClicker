@@ -1,0 +1,35 @@
+﻿@section styles {
+    @await RenderSectionAsync("styles", required: false)
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a class="navbar-brand text-primary" asp-action="Index" asp-controller="Home">
+            <h2>Illithid Clicker</h2>
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-left mb-md-0" style="margin-right: 700px;">
+            <li>
+                <a class="nav-link" asp-action="Leaderboard" asp-controller="User"><strong>Leaderboard</strong></a>
+            </li>
+            <li>
+                <a class="nav-link" asp-action="Settings" asp-controller="User"><strong>Settings</strong></a>
+            </li>
+        </ul>
+
+        <form class="col-md-3 text-end" asp-action="Logout" asp-controller="Auth">
+            <button type="submit" class="custom-image-button bg-transparent border-0">
+                <img src="~/Logout.png" background=transparent />
+            </button>
+        </form>
+    </header>
+    @RenderBody()
+</div>
+
+@section scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    @await RenderSectionAsync("scripts", required: false)
+}

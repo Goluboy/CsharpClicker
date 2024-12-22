@@ -1,0 +1,19 @@
+﻿@model AuthViewModel
+@section styles {
+    <link href="@Url.Content("~/css/index.css")" rel="stylesheet">
+}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="acc-from flex-column p-5">
+        <form class="d-flex flex-column align-items-center" asp-action="Register" asp-controller="Auth" method="post">
+            <h4>Sign Up</h4>
+            <label>User Name</label>
+            <input class="form-control mx-auto m-2 input-field" type="text" asp-for="@Model.UserName" maxlength="30" />
+            <label>Password</label>
+            <input class="form-control mx-auto m-2 input-field" type="password" asp-for="@Model.Password" />
+            <input class="btn btn-primary mx-auto" type="submit" value="Register" />
+            <div asp-validation-summary="All"></div>
+        </form>
+
+        <a class="d-flex justify-content-center align-items-center mx-auto" asp-action="Login" asp-controller="Auth">Sign In</a>
+    </div>
+</div>
